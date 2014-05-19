@@ -110,6 +110,12 @@
  PORT processing_system7_0_GPIO_I_pin = processing_system7_0_GPIO_I_0, DIR = I, VEC = [47:0]
  PORT processing_system7_0_GPIO_O_pin = processing_system7_0_GPIO_O, DIR = O, VEC = [47:0]
  PORT processing_system7_0_GPIO_T_pin = processing_system7_0_GPIO_T, DIR = O, VEC = [47:0]
+ PORT processing_system7_0_SPI0_SS1_O_pin = processing_system7_0_SPI0_SS1_O, DIR = O
+ PORT processing_system7_0_SPI0_SS2_O_pin = processing_system7_0_SPI0_SS2_O, DIR = O
+ PORT processing_system7_0_SPI0_SCLK_pin = processing_system7_0_SPI0_SCLK, DIR = IO, SIGIS = CLK
+ PORT processing_system7_0_SPI0_MOSI_pin = processing_system7_0_SPI0_MOSI, DIR = IO
+ PORT processing_system7_0_SPI0_MISO_pin = processing_system7_0_SPI0_MISO, DIR = IO
+ PORT processing_system7_0_SPI0_SS_pin = processing_system7_0_SPI0_SS, DIR = IO
 
 
 BEGIN processing_system7
@@ -129,7 +135,7 @@ BEGIN processing_system7
  PARAMETER C_EN_EMIO_SDIO1 = 0
  PARAMETER C_EN_EMIO_CD_SDIO1 = 0
  PARAMETER C_EN_EMIO_WP_SDIO1 = 0
- PARAMETER C_EN_EMIO_SPI0 = 0
+ PARAMETER C_EN_EMIO_SPI0 = 1
  PARAMETER C_EN_EMIO_SPI1 = 0
  PARAMETER C_EN_EMIO_SRAM_INT = 0
  PARAMETER C_EN_EMIO_TRACE = 0
@@ -153,7 +159,7 @@ BEGIN processing_system7
  PARAMETER C_EN_PJTAG = 0
  PARAMETER C_EN_SDIO0 = 0
  PARAMETER C_EN_SDIO1 = 1
- PARAMETER C_EN_SPI0 = 0
+ PARAMETER C_EN_SPI0 = 1
  PARAMETER C_EN_SPI1 = 0
  PARAMETER C_EN_TRACE = 0
  PARAMETER C_EN_TTC0 = 0
@@ -281,5 +287,11 @@ BEGIN processing_system7
  PORT GPIO_I = processing_system7_0_GPIO_I_0
  PORT GPIO_O = processing_system7_0_GPIO_O
  PORT GPIO_T = processing_system7_0_GPIO_T
+ PORT SPI0_SS1_O = processing_system7_0_SPI0_SS1_O
+ PORT SPI0_SS2_O = processing_system7_0_SPI0_SS2_O
+ PORT SPI0_SCLK = processing_system7_0_SPI0_SCLK
+ PORT SPI0_MOSI = processing_system7_0_SPI0_MOSI
+ PORT SPI0_MISO = processing_system7_0_SPI0_MISO
+ PORT SPI0_SS = processing_system7_0_SPI0_SS
 END
 
