@@ -111,7 +111,13 @@ module system_stub
     processing_system7_0_I2C0_SCL_pin,
     processing_system7_0_GPIO_I_pin,
     processing_system7_0_GPIO_O_pin,
-    processing_system7_0_GPIO_T_pin
+    processing_system7_0_GPIO_T_pin,
+    processing_system7_0_SPI0_SS1_O_pin,
+    processing_system7_0_SPI0_SS2_O_pin,
+    processing_system7_0_SPI0_SCLK_pin,
+    processing_system7_0_SPI0_MOSI_pin,
+    processing_system7_0_SPI0_MISO_pin,
+    processing_system7_0_SPI0_SS_pin
   );
   inout [53:0] processing_system7_0_MIO;
   input processing_system7_0_PS_SRSTB_pin;
@@ -221,6 +227,12 @@ module system_stub
   input [47:0] processing_system7_0_GPIO_I_pin;
   output [47:0] processing_system7_0_GPIO_O_pin;
   output [47:0] processing_system7_0_GPIO_T_pin;
+  output processing_system7_0_SPI0_SS1_O_pin;
+  output processing_system7_0_SPI0_SS2_O_pin;
+  inout processing_system7_0_SPI0_SCLK_pin;
+  inout processing_system7_0_SPI0_MOSI_pin;
+  inout processing_system7_0_SPI0_MISO_pin;
+  inout processing_system7_0_SPI0_SS_pin;
 
   (* BOX_TYPE = "user_black_box" *)
   system
@@ -332,8 +344,13 @@ module system_stub
       .processing_system7_0_I2C0_SCL_pin ( processing_system7_0_I2C0_SCL_pin ),
       .processing_system7_0_GPIO_I_pin ( processing_system7_0_GPIO_I_pin ),
       .processing_system7_0_GPIO_O_pin ( processing_system7_0_GPIO_O_pin ),
-      .processing_system7_0_GPIO_T_pin ( processing_system7_0_GPIO_T_pin )
+      .processing_system7_0_GPIO_T_pin ( processing_system7_0_GPIO_T_pin ),
+      .processing_system7_0_SPI0_SS1_O_pin ( processing_system7_0_SPI0_SS1_O_pin ),
+      .processing_system7_0_SPI0_SS2_O_pin ( processing_system7_0_SPI0_SS2_O_pin ),
+      .processing_system7_0_SPI0_SCLK_pin ( processing_system7_0_SPI0_SCLK_pin ),
+      .processing_system7_0_SPI0_MOSI_pin ( processing_system7_0_SPI0_MOSI_pin ),
+      .processing_system7_0_SPI0_MISO_pin ( processing_system7_0_SPI0_MISO_pin ),
+      .processing_system7_0_SPI0_SS_pin ( processing_system7_0_SPI0_SS_pin )
     );
 
 endmodule
-

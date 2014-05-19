@@ -24,24 +24,30 @@
 //`define ALTERA_IMPLEMENTATION 1
 `define XILINX_IMPLEMENTATION 1
 
-module transceiver(
-  // axi control registers		   
-  input        reset,
-  // axi mode registers
-  inout        tx_enable,
-  inout        rx_enable,
-  inout        loopback,
-  // axi parameter registers
-  inout [5:0]  rx_decimation,
-  inout [31:0] tx_dphase,
-  inout [31:0] rx_dphase
-  // axi stream interfaces
-  // ...
-  );
+// these axi registers are all memory mapped on the ARM,
+// I'm not sure how they turn out on this side
+// the caller of transceiver sure doesn't know them, either
+
+module transceiver(GPIO_P, GPIO_N);
+    inout [23:0] GPIO_P;
+    inout [23:0] GPIO_N;
    // parameters
    parameter sample_clock = 73.728;
    parameter sample_clock_divider = 1;
    parameter fixed_rx_decimation = 64;
+
+  // axi control registers		   
+   reg        reset;
+  // axi mode registers
+   reg        tx_enable;
+   reg 	      rx_enable;
+   reg 	      loopback;
+  // axi parameter registers
+   reg [5:0]  rx_decimation;
+   reg [31:0] tx_dphase;
+   reg [31:0] rx_dphase;
+  // axi stream interfaces
+  // ...
 
    wire [11:0] rx_data;
    wire [11:0] tx_data;

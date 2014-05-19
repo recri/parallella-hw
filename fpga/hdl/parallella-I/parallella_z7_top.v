@@ -52,6 +52,10 @@ module parallella_z7_top (/*AUTO ARG*/
    TXO_DATA_P, TXO_DATA_N, TXO_FRAME_P, TXO_FRAME_N, TXO_LCLK_P,
    TXO_LCLK_N, RXO_WR_WAIT_P, RXO_WR_WAIT_N, RXO_RD_WAIT,
    DSP_FLAG,TURBO_MODE, PROG_IO,
+`ifdef FEATURE_SDR_XCVR
+   //SPI for xcvr
+   SPI0_SS1_O, SPI0_SS2_O, SPI0_SCLK, SPI0_MOSI, SPI0_MISO, SPI0_SS,
+`endif
    //HDMI
    HDMI_D, HDMI_CLK, HDMI_HSYNC, HDMI_VSYNC, HDMI_DE, HDMI_SPDIF,
    HDMI_INT,PS_I2C_SCL,PS_I2C_SDA
@@ -139,7 +143,18 @@ module parallella_z7_top (/*AUTO ARG*/
    output 	DSP_RESET_N;
 
    input 	DSP_FLAG;
-   
+
+`ifdef FEATURE_SDR_XCVR
+   //##################################
+   //# SPI0 to SDR Transceiver 
+   //##################################
+   output 	SPI0_SS1_O;
+   output 	SPI0_SS2_O;
+   inout 	SPI0_SCLK;
+   inout 	SPI0_MOSI;
+   inout 	SPI0_MISO;
+   output 	SPI0_SS;
+`endif
    
    /*AUTOINPUT*/
    /*AUTOWIRE*/
@@ -234,6 +249,7 @@ module parallella_z7_top (/*AUTO ARG*/
    wire [47:0]  processing_system7_0_GPIO_O_pin;
    wire [47:0]  processing_system7_0_GPIO_T_pin;
 
+   // NB REC probably don't do this if GPIOs are going to SDR transceiver chip
 `ifndef FEATURE_GPIO_EMIO  // Tie-off GPIO signals if not connected to PS7
    assign processing_system7_0_GPIO_O_pin = 47'd0;
    assign processing_system7_0_GPIO_T_pin = 47'hFFFF_FFFF_FFFF;
@@ -285,6 +301,7 @@ module parallella_z7_top (/*AUTO ARG*/
    //# GPIOs
    //##############################
 
+   // NB REC probably don't do this if GPIOs are going to SDR transceiver chip
    // This module handles single-ended or differential, 7010 or 7020
    parallella_gpio_emio parallella_gpio_emio
      (
@@ -298,6 +315,13 @@ module parallella_z7_top (/*AUTO ARG*/
       .processing_system7_0_GPIO_T_pin(processing_system7_0_GPIO_T_pin)
       );
    
+`ifdef FEATURE_SDR_TRANSCEIVER
+   //##############################
+   //# SDR Transceiver Interface
+   //##############################
+   transceiver xcvr(GPIO_P, GPIO_N);
+`endif   
+
    //##############################
    //# HDMI Interface
    //##############################
@@ -544,20 +568,20 @@ module parallella_z7_top (/*AUTO ARG*/
 			   .processing_system7_0_I2C0_SDA_pin(PS_I2C_SDA),
 `ifdef FEATURE_HDMI
 			   .hdmi_clk(hdmi_clk),
-               .hdmi_data(hdmi_data),
-               .hdmi_hsync(hdmi_hsync),
-               .hdmi_vsync(hdmi_vsync),
-               .hdmi_data_e(hdmi_data_e),
-               .hdmi_int(hdmi_int),
+			   .hdmi_data(hdmi_data),
+			   .hdmi_hsync(hdmi_hsync),
+			   .hdmi_vsync(hdmi_vsync),
+			   .hdmi_data_e(hdmi_data_e),
+			   .hdmi_int(hdmi_int),
 `endif  // FEATURE_HDMI
 `ifdef FEATURE_GPIO_EMIO
-               .processing_system7_0_GPIO_I_pin(processing_system7_0_GPIO_I_pin),
-               .processing_system7_0_GPIO_O_pin(processing_system7_0_GPIO_O_pin),
-               .processing_system7_0_GPIO_T_pin(processing_system7_0_GPIO_T_pin),
+			   .processing_system7_0_GPIO_I_pin(processing_system7_0_GPIO_I_pin),
+			   .processing_system7_0_GPIO_O_pin(processing_system7_0_GPIO_O_pin),
+			   .processing_system7_0_GPIO_T_pin(processing_system7_0_GPIO_T_pin),
 `endif  // FEATURE_GPIO_EMIO
 			   /*AUTOINST*/
 			   // Outputs
-			               .processing_system7_0_DDR_WEB_pin(processing_system7_0_DDR_WEB_pin),
+			   .processing_system7_0_DDR_WEB_pin(processing_system7_0_DDR_WEB_pin),
 			   .processing_system7_0_M_AXI_GP1_ARESETN_pin(processing_system7_0_M_AXI_GP1_ARESETN_pin),
 			   .processing_system7_0_S_AXI_HP1_ARESETN_pin(processing_system7_0_S_AXI_HP1_ARESETN_pin),
 			   .processing_system7_0_FCLK_CLK3_pin(processing_system7_0_FCLK_CLK3_pin),

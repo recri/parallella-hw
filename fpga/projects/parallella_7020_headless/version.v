@@ -46,8 +46,14 @@
 //`define FEATURE_HDMI  1
 `define FEATURE_GPIO_EMIO 1
 //`define FEATURE_GPIO_DIFF 1
-`define FEATURE_CCLK_DIV 1
 
 // Set IOSTANDARD for GPIO pins
 `define IOSTD_GPIO       "LVCMOS25"
 //`define IOSTD_GPIO       "LVDS_25"
+
+// Features for SDR Transceiver
+// include the transceiver
+`define FEATURE_SDR_XCVR 1
+// run the transceiver chip at full speed
+// alternatives are to divide clock by 2 or 3
+`define FEATURE_CCLK_DIV 1
