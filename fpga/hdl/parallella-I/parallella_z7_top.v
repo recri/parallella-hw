@@ -315,7 +315,7 @@ module parallella_z7_top (/*AUTO ARG*/
       .processing_system7_0_GPIO_T_pin(processing_system7_0_GPIO_T_pin)
       );
    
-`ifdef FEATURE_SDR_TRANSCEIVER
+`ifdef FEATURE_SDR_XCVR
    //##############################
    //# SDR Transceiver Interface
    //##############################

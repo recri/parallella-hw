@@ -37,11 +37,11 @@ module firram36 (
 	output	[35:0]  q;
 
 `ifdef XILINX_IMPLEMENTATION
-   xfirram36(clock, wren, wraddress, data, clock, rdaddress, q)
+   xfirram36(clock, wren, wraddress, data, clock, rdaddress, q);
 `endif //  `if XILINX_IMPLEMENTATION
 
 `ifdef ALTERA_IMPLEMENTATION
-   afirram36(clock, data, rdaddress, wraddress, wren, q)
+   afirram36(clock, data, rdaddress, wraddress, wren, q);
 `endif //  `if XILINX_IMPLEMENTATION
 
 endmodule

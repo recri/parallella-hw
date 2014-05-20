@@ -32,11 +32,11 @@ module firromI_1024 (
    parameter MifFile = "coefI8_1024.mif";
 
 `ifdef XILINX_IMPLEMENTATION
-   xfirromI_1024 #(MifFile(MifFile)) (clock, address, q);
+   xfirromI_1024 #(.MifFile(MifFile)) (clock, address, q);
 `endif //  `ifdef XILINX_IMPLEMENTATION
 
 `ifdef ALTERA_IMPLEMENTATION
-   afirromI_1024 #(MifFile(MifFile)) (address, clock, q);
+   afirromI_1024 #(.MifFile(MifFile)) (address, clock, q);
 `endif //  `ifdef ALTERA_IMPLEMENTATION
 		       
 endmodule // firromI_1024

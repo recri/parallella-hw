@@ -18,12 +18,6 @@
 // the transceiver module ties the parts together
 //
 
-//
-// are we using Altera or Xilinx to implement ram and rom?
-//
-//`define ALTERA_IMPLEMENTATION 1
-`define XILINX_IMPLEMENTATION 1
-
 // these axi registers are all memory mapped on the ARM,
 // I'm not sure how they turn out on this side
 // the caller of transceiver sure doesn't know them, either

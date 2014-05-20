@@ -32,11 +32,11 @@ module firromH (
 	input	  clock;
 	output	[17:0]  q;
 `ifdef XILINX_IMPLEMENTATION
-       xfirromH #(MifFile(MifFile)) (clock, address, q);
+       xfirromH #(.MifFile(MifFile)) (clock, address, q);
 `endif //  `ifdef XILINX_IMPLEMENTATION
 
 `ifdef ALTERA_IMPLEMENTATION
-       afirromH #(MifFile(MifFile)) (address, clock, q);
+       afirromH #(.MifFile(MifFile)) (address, clock, q);
 `endif //  `ifdef XILINX_IMPLEMENTATION
 
 endmodule

@@ -57,3 +57,9 @@
 // run the transceiver chip at full speed
 // alternatives are to divide clock by 2 or 3
 `define FEATURE_CCLK_DIV 1
+
+//
+// are we using Altera or Xilinx to implement ram and rom?
+//
+//`define ALTERA_IMPLEMENTATION 1
+`define XILINX_IMPLEMENTATION 1
