@@ -28,12 +28,12 @@ boards/         -  Board design files, all projects
         mfg/            - Manufacturing files: Fab Gerbers, Assembly docs
 
 fpga/           -  FPGA design files and projects
-    __bitstreams/     - Latest generated bitstreams_
-    __edk/            - EDK sources__
+    bitstreams/     - Latest generated bitstreams
+    edk/            - EDK sources
         parallella_7010_headless/ - EDK for headless 7010-based Parallella
-        __parallella_7020_headless/ - EDK for headless 7020-based Parallella__
+        parallella_7020_headless/ - EDK for headless 7020-based Parallella
     externals/      - Container for external repositories used by our projects
-    __hdl/            - Verilog source files__
+    hdl/            - Verilog source files
         axi/            - General AXI interface modules
         clocks/         - Clock generation
         common/         - General-purpose synchronizers/muxs/debouncers/etc.
@@ -41,10 +41,10 @@ fpga/           -  FPGA design files and projects
         fifos/          - technology-independent FIFO modules
         gpio/           - modules for GPIO pins
         parallella-I/   - Modules specific to the Parallella
-        __xcvr            - SDR transceiver modules__
+        xcvr            - SDR transceiver modules
     ip/             - Tool-specific IP generation (CoreGen) sources
-    __projects/       - One folder for each project__
-        __parallella_7020_headless/__
+    projects/       - One folder for each project
+        parallella_7020_headless/
         parallella_7010_headless/
         parallella_64_7020_headless/
 ```
