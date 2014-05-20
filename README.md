@@ -1,7 +1,16 @@
-# parallella-hw
+# SDR parallella-hw
 
 This repository contains the board design sources and FPGA HDL sources for 
 the Parallella board and various accessories.
+
+This fork of parallella-hw contains the FPGA HDL and EDK sources for a
+software defined radio transceiver daughterboard for the parallella.  The
+hardware and software for the transceiver is based on the Hermes-Lite project, 
+https://github.com/softerhardware/Hermes-Lite.
+
+This project modifies fpga/projects/parallella_7020_headless,
+modifies fpga/edk/parallella_7020_headless,
+and adds fpga/hdl/xcvr.
 
 ## Directory Structure
 
@@ -33,6 +42,7 @@ fpga/           -  FPGA design files and projects
         fifos/          - technology-independent FIFO modules
         gpio/           - modules for GPIO pins
         parallella-I/   - Modules specific to the Parallella
+	xcvr		- SDR transceiver modules
     ip/             - Tool-specific IP generation (CoreGen) sources
     projects/       - One folder for each project
         parallella_7020_headless/
