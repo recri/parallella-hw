@@ -1,16 +1,15 @@
 # SDR parallella-hw
 
-This repository contains the board design sources and FPGA HDL sources for 
-the Parallella board and various accessories.
-
-This fork of parallella-hw contains the FPGA HDL and EDK sources for a
-software defined radio transceiver daughterboard for the parallella.  The
-hardware and software for the transceiver is based on the Hermes-Lite project, 
+This repository is a fork of https://github.com/parallella/parallella-hw.
+It contains the FPGA HDL and EDK sources for a software defined radio
+transceiver daughterboard for the parallella.  The hardware and software
+for the transceiver is based on the Hermes-Lite project, 
 https://github.com/softerhardware/Hermes-Lite.
 
 This project modifies fpga/projects/parallella_7020_headless,
 modifies fpga/edk/parallella_7020_headless,
-and adds fpga/hdl/xcvr.
+and adds fpga/hdl/xcvr.  Generating a bitstream will overwrite the corresponding
+.bit.bin file in fpga/bitstreams.
 
 ## Directory Structure
 
@@ -29,12 +28,12 @@ boards/         -  Board design files, all projects
         mfg/            - Manufacturing files: Fab Gerbers, Assembly docs
 
 fpga/           -  FPGA design files and projects
-    bitstreams/     - Latest generated bitstreams
-    edk/            - EDK sources
+    __bitstreams/     - Latest generated bitstreams_
+    __edk/            - EDK sources__
         parallella_7010_headless/ - EDK for headless 7010-based Parallella
-        parallella_7020_headless/ - EDK for headless 7020-based Parallella
+        __parallella_7020_headless/ - EDK for headless 7020-based Parallella__
     externals/      - Container for external repositories used by our projects
-    hdl/            - Verilog source files
+    __hdl/            - Verilog source files__
         axi/            - General AXI interface modules
         clocks/         - Clock generation
         common/         - General-purpose synchronizers/muxs/debouncers/etc.
@@ -42,10 +41,10 @@ fpga/           -  FPGA design files and projects
         fifos/          - technology-independent FIFO modules
         gpio/           - modules for GPIO pins
         parallella-I/   - Modules specific to the Parallella
-	xcvr		- SDR transceiver modules
+        __xcvr            - SDR transceiver modules__
     ip/             - Tool-specific IP generation (CoreGen) sources
-    projects/       - One folder for each project
-        parallella_7020_headless/
+    __projects/       - One folder for each project__
+        __parallella_7020_headless/__
         parallella_7010_headless/
         parallella_64_7020_headless/
 ```
