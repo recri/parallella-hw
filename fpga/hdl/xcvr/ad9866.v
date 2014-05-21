@@ -29,31 +29,44 @@ module ad9866(
    output [5:0]  hw_tx_data,	   // DAC output nibble
    output 	 hw_tx_sync,	   // output enabled, aka hw_tx_enable
    output 	 hw_rx_gain,	   // pga gain setting enable
-   output 	 hw_reset,	   // hardware reset
+   output 	 hw_not_reset,	   // hardware reset
    input 	 hw_rx_clock,	   // nibble clock
    output 	 hw_tx_not_quiet); // transmit enable, aka hw_tx_clock
 
-   reg [11:0] 	 rx_data;
-   reg [5:0] 	 hw_tx_data;
-   
-   assign hw_reset = reset;
+   assign hw_not_reset = ! reset;
    assign clock = hw_rx_sync;		// rx_sync once per sample
    assign hw_tx_not_quiet = tx_enable;
-   assign hw_rx_gain = rx_enable && rx_pga_enable && ! tx_enable;
-   assign hw_tx_sync = hw_rx_sync && tx_enable;
+   assign hw_rx_gain = rx_enable & rx_pga_enable & ~tx_enable;
+   assign hw_tx_sync = hw_rx_sync & tx_enable;
+
+   reg [11:0] 	 my_rx_data;
+   reg [5:0] 	 my_hw_tx_data;
+ 	 
+   assign rx_data = my_rx_data;
+   assign hw_tx_data = my_hw_tx_data;
 
    always @(negedge hw_rx_clock) begin
       if  (reset != 0) begin
-	 if (rx_enable) begin
-	    if (hw_rx_sync != 0)
-	      rx_data[5:0] <= hw_rx_data;
-	    else
-	      rx_data[11:6] <= hw_rx_data;
+	 if (rx_enable) begin	
+	    if (hw_rx_sync) begin	// hw_rx_sync high => most significant nibble and first nibble of word
+	       my_rx_data[11:6] <= hw_rx_data;
+	    end else begin		// hw_rx_sync low => least significant nibble and second nibble of word
+	       my_rx_data[5:0] <= hw_rx_data;
+	    end
 	 end
-	 if (tx_enable)
-	   hw_tx_data <= hw_rx_sync ? tx_data[5:0] : tx_data[11:6];
-	 else
-	   hw_tx_data <= hw_rx_gain ? rx_pga : 6'b0;
+	 if (tx_enable) begin
+	    if (hw_rx_sync) begin
+	       my_hw_tx_data <= tx_data[5:0];
+	    end else begin
+	       my_hw_tx_data <= tx_data[11:6];
+	    end
+	 end else begin
+	    if (hw_rx_gain) begin
+	       my_hw_tx_data <= rx_pga;
+	    end else begin
+	       my_hw_tx_data <= 6'b0;
+	    end
+	 end
       end
    end
 

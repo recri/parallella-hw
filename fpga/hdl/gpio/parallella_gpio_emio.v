@@ -148,13 +148,15 @@ module parallella_gpio_emio
 
 `endif // !`ifdef FEATURE_GPIO_DIFF
 
+`ifndef FEATURE_SDR_XCVR
    // Tie unused PS signals back to themselves
    genvar    n;
    generate for(n=`GPIO_SIGS; n<48; n=n+1) begin : unused_ps_sigs
+
       assign processing_system7_0_GPIO_I_pin[n]
                = processing_system7_0_GPIO_O_pin[n] &
                  ~processing_system7_0_GPIO_T_pin[n];
    end
    endgenerate
-   
+`endif
 endmodule // parallella_gpio_emio

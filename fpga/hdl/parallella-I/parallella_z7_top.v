@@ -250,9 +250,11 @@ module parallella_z7_top (/*AUTO ARG*/
    wire [47:0]  processing_system7_0_GPIO_T_pin;
 
    // NB REC probably don't do this if GPIOs are going to SDR transceiver chip
+`ifndef FEATURE_SDR_XCVR
 `ifndef FEATURE_GPIO_EMIO  // Tie-off GPIO signals if not connected to PS7
    assign processing_system7_0_GPIO_O_pin = 47'd0;
    assign processing_system7_0_GPIO_T_pin = 47'hFFFF_FFFF_FFFF;
+`endif
 `endif
 
    //###########
@@ -314,12 +316,19 @@ module parallella_z7_top (/*AUTO ARG*/
       .processing_system7_0_GPIO_O_pin(processing_system7_0_GPIO_O_pin),
       .processing_system7_0_GPIO_T_pin(processing_system7_0_GPIO_T_pin)
       );
-   
+
 `ifdef FEATURE_SDR_XCVR
    //##############################
    //# SDR Transceiver Interface
    //##############################
-   transceiver xcvr(GPIO_P, GPIO_N);
+   transceiver xcvr(
+    GPIO_N,
+    GPIO_P,
+    SPI0_SCLK,
+    SPI0_MOSI,
+    SPI0_MISO,
+    SPI0_SS
+   );
 `endif   
 
    //##############################
@@ -574,6 +583,14 @@ module parallella_z7_top (/*AUTO ARG*/
 			   .hdmi_data_e(hdmi_data_e),
 			   .hdmi_int(hdmi_int),
 `endif  // FEATURE_HDMI
+`ifdef FEATURE_SDR_XCVR
+			   .processing_system7_0_SPI0_SS1_O_pin(SPI0_SS1_0),
+			   .processing_system7_0_SPI0_SS2_O_pin(SPI0_SS2_O),
+			   .processing_system7_0_SPI0_SCLK_pin(SPI0_SCLK),
+			   .processing_system7_0_SPI0_MOSI_pin(SPI0_MOSI),
+			   .processing_system7_0_SPI0_MISO_pin(SPI0_MISO),
+			   .processing_system7_0_SPI0_SS_pin(SPI0_SS),
+`endif
 `ifdef FEATURE_GPIO_EMIO
 			   .processing_system7_0_GPIO_I_pin(processing_system7_0_GPIO_I_pin),
 			   .processing_system7_0_GPIO_O_pin(processing_system7_0_GPIO_O_pin),
