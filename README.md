@@ -30,9 +30,12 @@ boards/         -  Board design files, all projects
 fpga/           -  FPGA design files and projects
     bitstreams/     - Latest generated bitstreams
     edk/            - EDK sources
+        parallella_7010_hdmi/     - EDK for hdmi-enabled 7010-based Parallella
+        parallella_7020_hdmi/     - EDK for hdmi-enabled 7020-based Parallella
         parallella_7010_headless/ - EDK for headless 7010-based Parallella
         parallella_7020_headless/ - EDK for headless 7020-based Parallella
     externals/      - Container for external repositories used by our projects
+        fpgahdl_xilinx/   - Submodule for HDMI library modules from ADI
     hdl/            - Verilog source files
         axi/            - General AXI interface modules
         clocks/         - Clock generation
@@ -44,6 +47,8 @@ fpga/           -  FPGA design files and projects
         xcvr            - SDR transceiver modules
     ip/             - Tool-specific IP generation (CoreGen) sources
     projects/       - One folder for each project
+        parallella_7020_hdmi/
+        parallella_7010_hdmi/
         parallella_7020_headless/
         parallella_7010_headless/
         parallella_64_7020_headless/

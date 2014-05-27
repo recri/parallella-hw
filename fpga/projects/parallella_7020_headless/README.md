@@ -8,7 +8,7 @@ Xilinx ISE/EDK/PlanAhead version 14.7
 
 ## Target Devices
 
-* Zynq xc7z010clg400-1
+* Zynq xc7z020clg400-1
 * Epiphany E16G301
 
 ## Dependencies
@@ -23,15 +23,17 @@ Xilinx ISE/EDK/PlanAhead version 14.7
 
 2.  Launch the Xilinx PlanAhead tool
 
+3.  Open the project fpga/projects/parallella_7020_headless/parallella_7020_headless.ppr.
+
+4.  From the planAhead GUI, in the Flow Navigator on the left side, select "Generate Bitstream"
+
+5.  Answer "Yes" to "OK to launch synthesis and implementation?"
+
 ```
     Linux hints:
       $ . /opt/Xilinx/14.7/ISE_DS/settings[32|64].[c]sh
       $ planAhead &
 ```
-
-3.  From the planAhead GUI, in the Flow Navigator on the left side, select "Generate Bitstream"
-
-4.  Answer "Yes" to "OK to launch synthesis and implementation?"
 
 ## Output
 

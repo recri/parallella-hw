@@ -275,7 +275,6 @@ module parallella_z7_top (/*AUTO ARG*/
    wire 	 hdmi_vsync;
    wire 	 hdmi_data_e;
    wire 	 hdmi_spdif;
-   wire 	 hdmi_int;
    wire [7:0] 	 rxi_data_p;
    wire [7:0] 	 rxi_data_n;
    wire 	 rxi_frame_p;
@@ -341,8 +340,6 @@ module parallella_z7_top (/*AUTO ARG*/
    assign HDMI_VSYNC = hdmi_vsync;
    assign HDMI_DE    = hdmi_data_e;
    assign HDMI_SPDIF = hdmi_spdif;
-
-   assign hdmi_int   = 1'b0;//=HDMI_INT
 
 `ifndef FEATURE_HDMI
    assign hdmi_data = 16'd0;
@@ -577,11 +574,11 @@ module parallella_z7_top (/*AUTO ARG*/
 			   .processing_system7_0_I2C0_SDA_pin(PS_I2C_SDA),
 `ifdef FEATURE_HDMI
 			   .hdmi_clk(hdmi_clk),
-			   .hdmi_data(hdmi_data),
-			   .hdmi_hsync(hdmi_hsync),
-			   .hdmi_vsync(hdmi_vsync),
-			   .hdmi_data_e(hdmi_data_e),
-			   .hdmi_int(hdmi_int),
+               .hdmi_data(hdmi_data),
+               .hdmi_hsync(hdmi_hsync),
+               .hdmi_vsync(hdmi_vsync),
+               .hdmi_data_e(hdmi_data_e),
+               .axi_spdif_tx_0_spdif_tx_o_pin(hdmi_spdif),
 `endif  // FEATURE_HDMI
 `ifdef FEATURE_SDR_XCVR
 			   .processing_system7_0_SPI0_SS1_O_pin(SPI0_SS1_0),
@@ -598,7 +595,7 @@ module parallella_z7_top (/*AUTO ARG*/
 `endif  // FEATURE_GPIO_EMIO
 			   /*AUTOINST*/
 			   // Outputs
-			   .processing_system7_0_DDR_WEB_pin(processing_system7_0_DDR_WEB_pin),
+               .processing_system7_0_DDR_WEB_pin(processing_system7_0_DDR_WEB_pin),
 			   .processing_system7_0_M_AXI_GP1_ARESETN_pin(processing_system7_0_M_AXI_GP1_ARESETN_pin),
 			   .processing_system7_0_S_AXI_HP1_ARESETN_pin(processing_system7_0_S_AXI_HP1_ARESETN_pin),
 			   .processing_system7_0_FCLK_CLK3_pin(processing_system7_0_FCLK_CLK3_pin),
