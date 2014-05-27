@@ -29,14 +29,14 @@ module firromI_1024 (
    input	[9:0]  address;
    input 	       clock;
    output [17:0]       q;
-   parameter MifFile = "coefI8_1024.mif";
+   parameter FileRoot = "coefI8_1024";
 
 `ifdef XILINX_IMPLEMENTATION
-   xfirromI_1024 #(.MifFile(MifFile)) (clock, address, q);
+   xfirromI_1024 #(.MifFile({FileRoot,".dat"})) (clock, address, q);
 `endif //  `ifdef XILINX_IMPLEMENTATION
 
 `ifdef ALTERA_IMPLEMENTATION
-   afirromI_1024 #(.MifFile(MifFile)) (address, clock, q);
+   afirromI_1024 #(.MifFile({FileRoot,".mif"})) (address, clock, q);
 `endif //  `ifdef ALTERA_IMPLEMENTATION
 		       
 endmodule // firromI_1024

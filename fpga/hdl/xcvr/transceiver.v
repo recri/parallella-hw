@@ -32,10 +32,10 @@ module transceiver(
     );
     inout [23:0] GPIO_N;
     inout [23:0] GPIO_P;
-    input SPI0_SCLK;
-    input SPI0_MOSI;
-    output SPI0_MISO;
-    input SPI0_SS;
+    inout SPI0_SCLK;
+    inout SPI0_MOSI;
+    inout SPI0_MISO;
+    inout SPI0_SS;
     
    // parameters
    parameter sample_clock = 73.728;
@@ -80,11 +80,11 @@ module transceiver(
    assign hw_tx_clock = GPIO_N[19];     // gpio_19_n from ad9866, rxclk
    assign hw_rx_clock = GPIO_P[19];     // gpio_19_p from ad9866, txclk
 
-    // assign the SPI0 EMIO straight through to GPIO connector
-   assign SPI0_MOSI = GPIO_N[21];    // gpio_21_n to/from ad9866, spi mosi
-   assign SPI0_MISO = GPIO_P[21];    // gpio_21_p from ad9866, spi miso
-   assign SPI0_SCLK = GPIO_N[23];    // gpio_23_n to ad9866, spi clock
-   assign SPI0_SS = GPIO_P[23];      // gpio_23_p to ad9866, spi ~serial enable
+   // assign the SPI0 EMIO straight through to GPIO connector
+   //assign SPI0_MOSI = GPIO_N[21];    // gpio_21_n to/from ad9866, spi mosi
+   //assign SPI0_MISO = GPIO_P[21];    // gpio_21_p from ad9866, spi miso
+   //assign SPI0_SCLK = GPIO_N[23];    // gpio_23_n to ad9866, spi clock
+   //assign SPI0_SS = GPIO_P[23];      // gpio_23_p to ad9866, spi ~serial enable
 
    wire        clock;		// hw_rx_clock / 2
         
@@ -114,7 +114,7 @@ module transceiver(
    wire [23:0] rx_out_data_Q;
 
    receiver rcvr(clock, rx_decimation, rx_dphase,
-	    rx_out_strobe, rx_data,
+	    rx_out_strobe, {rx_data,2'b000},
 	    rx_out_data_I, rx_out_data_Q);
 
    wire [23:0] tx_in_data_I;

@@ -39,7 +39,7 @@ module firram36I_1024 (
 `ifdef XILINX_IMPLEMENTATION
    // uh, this is only firram36I_128, not 1024,
    // someone must have cut and pasted blindly
-   xfirram36I_128(clock, wren, wraddress, data, clock, rdaddress, q);
+   xfirram36I_128(clock, wren, wraddress, data, rdaddress, q);
 `endif //  `ifdef XILINX_IMPLEMENTATION
 
 `ifdef ALTERA_IMPLEMENTATION

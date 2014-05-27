@@ -26,17 +26,17 @@ module firromH (
 	clock,
 	q);
 
-	parameter MifFile = "missing_file.mif";
+	parameter FileRoot = "missing_file";
 
 	input	[7:0]  address;
 	input	  clock;
 	output	[17:0]  q;
 `ifdef XILINX_IMPLEMENTATION
-       xfirromH #(.MifFile(MifFile)) (clock, address, q);
+   xfirromH #(.MifFile({FileRoot,".dat"})) rom (clock, address, q);
 `endif //  `ifdef XILINX_IMPLEMENTATION
 
 `ifdef ALTERA_IMPLEMENTATION
-       afirromH #(.MifFile(MifFile)) (address, clock, q);
-`endif //  `ifdef XILINX_IMPLEMENTATION
+   afirromH #(.MifFile({FileRoot,".mif"})) rom (address, clock, q);
+`endif
 
 endmodule

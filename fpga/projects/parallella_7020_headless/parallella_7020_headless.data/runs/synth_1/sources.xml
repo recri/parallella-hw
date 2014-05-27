@@ -434,6 +434,15 @@
         <Attr Name="UsedInSimulation" Val="1"/>
       </FileInfo>
     </File>
+    <File Path="$PPRDIR/../../hdl/xcvr/Polyphase_FIR/coefL8A.dat"/>
+    <File Path="$PPRDIR/../../hdl/xcvr/Polyphase_FIR/coefL8B.dat"/>
+    <File Path="$PPRDIR/../../hdl/xcvr/Polyphase_FIR/coefL8C.dat"/>
+    <File Path="$PPRDIR/../../hdl/xcvr/Polyphase_FIR/coefL8D.dat"/>
+    <File Path="$PPRDIR/../../hdl/xcvr/Polyphase_FIR/coefL8E.dat"/>
+    <File Path="$PPRDIR/../../hdl/xcvr/Polyphase_FIR/coefL8F.dat"/>
+    <File Path="$PPRDIR/../../hdl/xcvr/Polyphase_FIR/coefL8G.dat"/>
+    <File Path="$PPRDIR/../../hdl/xcvr/Polyphase_FIR/coefL8H.dat"/>
+    <File Path="$PPRDIR/../../hdl/xcvr/Polyphase_FIR/coefI8_1024.dat"/>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
       <Option Name="TopModule" Val="parallella_z7_top"/>

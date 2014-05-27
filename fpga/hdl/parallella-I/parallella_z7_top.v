@@ -148,12 +148,12 @@ module parallella_z7_top (/*AUTO ARG*/
    //##################################
    //# SPI0 to SDR Transceiver 
    //##################################
-   output 	SPI0_SS1_O;
-   output 	SPI0_SS2_O;
+   inout 	SPI0_SS1_O;
+   inout 	SPI0_SS2_O;
    inout 	SPI0_SCLK;
    inout 	SPI0_MOSI;
    inout 	SPI0_MISO;
-   output 	SPI0_SS;
+   inout 	SPI0_SS;
 `endif
    
    /*AUTOINPUT*/

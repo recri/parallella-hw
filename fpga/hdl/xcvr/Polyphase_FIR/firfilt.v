@@ -149,14 +149,14 @@ module firX8R8(
    // at end of sequence indicate new data is available
    assign y_avail = (wstate == 8);
 
-   fir256 #("coefL8A.mif", ABITS, TAPS) A (clock, waddr, weA, x_real, x_imag, RaccA, IaccA);
-   fir256 #("coefL8B.mif", ABITS, TAPS) B (clock, waddr, weB, x_real, x_imag, RaccB, IaccB);
-   fir256 #("coefL8C.mif", ABITS, TAPS) C (clock, waddr, weC, x_real, x_imag, RaccC, IaccC);
-   fir256 #("coefL8D.mif", ABITS, TAPS) D (clock, waddr, weD, x_real, x_imag, RaccD, IaccD);
-   fir256 #("coefL8E.mif", ABITS, TAPS) E (clock, waddr, weE, x_real, x_imag, RaccE, IaccE);
-   fir256 #("coefL8F.mif", ABITS, TAPS) F (clock, waddr, weF, x_real, x_imag, RaccF, IaccF);
-   fir256 #("coefL8G.mif", ABITS, TAPS) G (clock, waddr, weG, x_real, x_imag, RaccG, IaccG);
-   fir256 #("coefL8H.mif", ABITS, TAPS) H (clock, waddr, weH, x_real, x_imag, RaccH, IaccH);
+   fir256 #("coefL8A", ABITS, TAPS) A (clock, waddr, weA, x_real, x_imag, RaccA, IaccA);
+   fir256 #("coefL8B", ABITS, TAPS) B (clock, waddr, weB, x_real, x_imag, RaccB, IaccB);
+   fir256 #("coefL8C", ABITS, TAPS) C (clock, waddr, weC, x_real, x_imag, RaccC, IaccC);
+   fir256 #("coefL8D", ABITS, TAPS) D (clock, waddr, weD, x_real, x_imag, RaccD, IaccD);
+   fir256 #("coefL8E", ABITS, TAPS) E (clock, waddr, weE, x_real, x_imag, RaccE, IaccE);
+   fir256 #("coefL8F", ABITS, TAPS) F (clock, waddr, weF, x_real, x_imag, RaccF, IaccF);
+   fir256 #("coefL8G", ABITS, TAPS) G (clock, waddr, weG, x_real, x_imag, RaccG, IaccG);
+   fir256 #("coefL8H", ABITS, TAPS) H (clock, waddr, weH, x_real, x_imag, RaccH, IaccH);
 	
 endmodule
 
